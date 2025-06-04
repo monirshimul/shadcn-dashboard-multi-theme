@@ -76,7 +76,7 @@ const Navbar = () => {
         document.cookie = `theme=${val ? "dark" : "light"}; path=/; max-age=31536000`
     }
     return (
-        <nav className="flex items-center justify-between shadow-md shadow-custom-shadow p-2 bg-background">
+        <nav className="flex items-center justify-between shadow-md shadow-primary/20 p-2 bg-background">
             <SidebarTrigger className="-ml-1" />
             <NavigationMenuDemo />
             <div className="flex items-center gap-1">

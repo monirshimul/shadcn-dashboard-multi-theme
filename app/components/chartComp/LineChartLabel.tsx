@@ -1,10 +1,24 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { TrendingUp } from "lucide-react"
+import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts"
+
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+} from "@/components/ui/chart"
+
+export const description = "A line chart with a label"
 
 const chartData = [
     { month: "January", desktop: 186, mobile: 80 },
@@ -14,6 +28,7 @@ const chartData = [
     { month: "May", desktop: 209, mobile: 130 },
     { month: "June", desktop: 214, mobile: 140 },
 ]
+
 const chartConfig = {
     desktop: {
         label: "Desktop",
@@ -25,31 +40,56 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-const BarChartOne = () => {
+export function ChartLineLabel() {
     return (
         <Card className="shadow-md shadow-primary/40">
             <CardHeader>
-                <CardTitle>Bar Chart - Multiple</CardTitle>
+                <CardTitle>Line Chart - Label</CardTitle>
                 <CardDescription>January - June 2024</CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig}>
-                    <BarChart accessibilityLayer data={chartData}>
+                    <LineChart
+                        accessibilityLayer
+                        data={chartData}
+                        margin={{
+                            top: 20,
+                            left: 12,
+                            right: 12,
+                        }}
+                    >
                         <CartesianGrid vertical={false} />
                         <XAxis
                             dataKey="month"
                             tickLine={false}
-                            tickMargin={10}
                             axisLine={false}
+                            tickMargin={8}
                             tickFormatter={(value) => value.slice(0, 3)}
                         />
                         <ChartTooltip
                             cursor={false}
-                            content={<ChartTooltipContent indicator="dashed" />}
+                            content={<ChartTooltipContent indicator="line" />}
                         />
-                        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-                        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                    </BarChart>
+                        <Line
+                            dataKey="desktop"
+                            type="natural"
+                            stroke="var(--color-desktop)"
+                            strokeWidth={2}
+                            dot={{
+                                fill: "var(--color-desktop)",
+                            }}
+                            activeDot={{
+                                r: 6,
+                            }}
+                        >
+                            <LabelList
+                                position="top"
+                                offset={12}
+                                className="fill-foreground"
+                                fontSize={12}
+                            />
+                        </Line>
+                    </LineChart>
                 </ChartContainer>
             </CardContent>
             <CardFooter className="flex-col items-start gap-2 text-sm">
@@ -63,5 +103,3 @@ const BarChartOne = () => {
         </Card>
     )
 }
-
-export default BarChartOne

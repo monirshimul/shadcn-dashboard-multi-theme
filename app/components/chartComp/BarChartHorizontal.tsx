@@ -1,43 +1,62 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { TrendingUp } from "lucide-react"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
+
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+} from "@/components/ui/chart"
+
+export const description = "A horizontal bar chart"
 
 const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
+    { month: "January", desktop: 186 },
+    { month: "February", desktop: 305 },
+    { month: "March", desktop: 237 },
+    { month: "April", desktop: 73 },
+    { month: "May", desktop: 209 },
+    { month: "June", desktop: 214 },
 ]
+
 const chartConfig = {
     desktop: {
         label: "Desktop",
         color: "var(--chart-1)",
     },
-    mobile: {
-        label: "Mobile",
-        color: "var(--chart-2)",
-    },
 } satisfies ChartConfig
 
-const BarChartOne = () => {
+export function ChartBarHorizontal() {
     return (
         <Card className="shadow-md shadow-primary/40">
             <CardHeader>
-                <CardTitle>Bar Chart - Multiple</CardTitle>
+                <CardTitle>Bar Chart - Horizontal</CardTitle>
                 <CardDescription>January - June 2024</CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig}>
-                    <BarChart accessibilityLayer data={chartData}>
-                        <CartesianGrid vertical={false} />
-                        <XAxis
+                    <BarChart
+                        accessibilityLayer
+                        data={chartData}
+                        layout="vertical"
+                        margin={{
+                            left: -20,
+                        }}
+                    >
+                        <XAxis type="number" dataKey="desktop" hide />
+                        <YAxis
                             dataKey="month"
+                            type="category"
                             tickLine={false}
                             tickMargin={10}
                             axisLine={false}
@@ -45,10 +64,9 @@ const BarChartOne = () => {
                         />
                         <ChartTooltip
                             cursor={false}
-                            content={<ChartTooltipContent indicator="dashed" />}
+                            content={<ChartTooltipContent hideLabel />}
                         />
-                        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-                        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={5} />
                     </BarChart>
                 </ChartContainer>
             </CardContent>
@@ -63,5 +81,3 @@ const BarChartOne = () => {
         </Card>
     )
 }
-
-export default BarChartOne
