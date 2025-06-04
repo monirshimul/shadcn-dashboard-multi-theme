@@ -17,13 +17,12 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { NavigationMenuDemo } from "./navComp/nav-menu"
 
-const themes = ['default', 'green', 'blue', 'rose']
 const themeWithColor = [{ name: "default", color: "#129990" }, { name: "green", color: "#1F7D53" }, { name: "blue", color: "#4D55CC" }, { name: "rose", color: "#E50046" }]
 
 const Navbar = () => {
 
     const [curTheme, setCurTheme] = useState<boolean>(false)
-    const { theme, setTheme, resolvedTheme } = useTheme()
+    const { setTheme } = useTheme()
     const [selectedTheme, setSelectedTheme] = useState('default')
     const [hasHydrated, setHasHydrated] = useState(false)
 
@@ -66,9 +65,9 @@ const Navbar = () => {
 
 
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedTheme(e.target.value)
-    }
+    // const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //     setSelectedTheme(e.target.value)
+    // }
 
     const getThemeVal = (val: boolean) => {
         setCurTheme(val)
