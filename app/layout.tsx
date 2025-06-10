@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import AppSidebar from "./components/AppSidebar";
+import BreakpointIndicator from "./components/BreakpointIndicator";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
 import "./globals.css";
@@ -51,6 +52,7 @@ export default async function RootLayout({
               </main>
             </SidebarInset>
           </SidebarProvider>
+          {process.env.NODE_ENV === "development" && <BreakpointIndicator />}
         </ThemeProvider>
       </body>
     </html>

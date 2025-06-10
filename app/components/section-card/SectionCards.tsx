@@ -13,7 +13,7 @@ import { TrendingDown, TrendingUp } from "lucide-react"
 
 export function SectionCards() {
     return (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <Card className="@container/card shadow-md shadow-primary/40">
                 <CardHeader>
                     <CardDescription>Total Revenue</CardDescription>

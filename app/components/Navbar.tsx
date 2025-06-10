@@ -77,7 +77,9 @@ const Navbar = () => {
     return (
         <nav className="flex items-center justify-between shadow-md shadow-primary/20 p-2 bg-background">
             <SidebarTrigger className="-ml-1" />
-            <NavigationMenuDemo />
+            <div className="hidden xl:block">
+                <NavigationMenuDemo />
+            </div>
             <div className="flex items-center gap-1">
 
                 {/* <Link href={"#"}>Dashboard</Link> */}
